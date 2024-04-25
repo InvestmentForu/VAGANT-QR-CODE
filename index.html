@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QR Code Generator</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>VAGANT QR Code Generator🔥</h1>
+        <div id="input-options">
+            <label for="input-text">Enter Text:</label>
+            <input type="text" id="input-text"><br>
+            
+            <label for="input-image">Upload Image:</label>
+            <input type="file" id="input-image" accept="image/*"><br>
+            
+            <label for="input-url">Enter URL:</label>
+            <input type="text" id="input-url"><br>
+            
+            <button onclick="generateQRCode()">Generate QR Code</button>
+        </div>
+        <div id="output">
+            <img id="qr-code" src="" alt="QR Code">
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrious/4.0.2/qrious.min.js"></script>
+    <script>
+        function generateQRCode() {
+            var inputText = document.getElementById('input-text').value;
+            var inputURL = document.getElementById('input-url').value;
+            var inputImage = document.getElementById('input-image').files[0];
+
+            var qrInput = inputText || inputURL || inputImage;
+
+            if (qrInput) {
+                var qrCode = new QRious({
+                    element: document.getElementById('qr-code'),
+                    size: 300,
+                    value: qrInput
+                });
+            } else {
+                alert('Please enter text, URL, or upload an image to generate QR code.');
+            }
+        }
+    </script>
+</body>
+</html>
